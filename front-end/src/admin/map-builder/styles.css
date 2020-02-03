@@ -1,0 +1,16 @@
+.map-builder {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.map-builder .map {
+    background-image: url('../../assets/map/grid.png')
+}
+
+.map-builder .tiles {
+    border: 1px solid black;
+    border-left: none;
+    background: black;
+    max-width: 320px;
+}
