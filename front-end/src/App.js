@@ -1,4 +1,5 @@
 import React from 'react'
+import AdminMapBuilder from './admin/map-builder'
 import World from './components/world'
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
         width: '100vw',
         justifyContent: 'center',
         alignItems: 'center'
-    }}>
+    }}
+    >
       <World />
     </div>
   );

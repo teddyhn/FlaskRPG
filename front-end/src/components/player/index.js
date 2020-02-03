@@ -41,6 +41,7 @@ function Player(props) {
         <div
             style={{
                 position: 'absolute',
+                zIndex: '1000',
                 top: props.position[1],
                 left: props.position[0],
                 background: `url(${walkSprite}) -${offset.left + step * SPRITE_SIZE}px -${offset.top - facing.current}px`,

@@ -1,0 +1,270 @@
+.row {
+    display: flex;
+}
+
+.tile {
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: rgb(41, 38, 52);
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    image-rendering: pixelated;
+}
+
+.overlay {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    image-rendering: pixelated;
+}
+
+.placed.tile {
+    position: absolute;
+}
+
+.grass {
+    background: url('../assets/map/tiles_packed.png') -64px -16px;
+}
+
+.grass-tl {
+    background: url('../assets/map/tiles_packed.png') -0px -0px;
+}
+
+.grass-t1 {
+    background: url('../assets/map/tiles_packed.png') -16px -0px;
+}
+
+.grass-t2 {
+    background: url('../assets/map/tiles_packed.png') -32px -0px;
+}
+
+.grass-tr {
+    background: url('../assets/map/tiles_packed.png') -80px -0px;
+}
+
+.grass-l {
+    background: url('../assets/map/tiles_packed.png') -0px -16px;
+}
+
+.grass-r {
+    background: url('../assets/map/tiles_packed.png') -80px -16px;
+}
+
+.grass-bl {
+    background: url('../assets/map/tiles_packed.png') -0px -64px;
+}
+
+.grass-b {
+    background: url('../assets/map/tiles_packed.png') -16px -64px;
+}
+
+.grass-br {
+    background: url('../assets/map/tiles_packed.png') -80px -64px;
+}
+
+.grass-e-tl {
+    background: url('../assets/map/tiles_packed.png') -96px -0px;
+}
+
+.grass-e-tb {
+    background: url('../assets/map/tiles_packed.png') -112px -0px;
+}
+
+.grass-e-tr {
+    background: url('../assets/map/tiles_packed.png') -128px -0px;
+}
+
+.grass-e-lr {
+    background: url('../assets/map/tiles_packed.png') -96px -16px;
+}
+
+.grass-e-bl {
+    background: url('../assets/map/tiles_packed.png') -96px -32px;
+}
+
+.grass-e-tr {
+    background: url('../assets/map/tiles_packed.png') -128px -0px;
+}
+
+.grass-e-br {
+    background: url('../assets/map/tiles_packed.png') -128px -32px;
+}
+
+.grass-overlay {
+    background: url('../assets/map/tiles_packed.png') -112px -16px;
+}
+
+.wall-t-1 {
+    background: url('../assets/map/tiles_packed.png') -0px -80px;
+}
+
+.wall-t-2 {
+    background: url('../assets/map/tiles_packed.png') -16px -80px;
+}
+
+.wall-t-3 {
+    background: url('../assets/map/tiles_packed.png') -32px -80px;
+}
+
+.wall-t-4 {
+    background: url('../assets/map/tiles_packed.png') -48px -80px;
+}
+
+.wall-t-5 {
+    background: url('../assets/map/tiles_packed.png') -64px -80px;
+}
+
+.wall-m-1 {
+    background: url('../assets/map/tiles_packed.png') -0px -96px;
+}
+
+.wall-m-2 {
+    background: url('../assets/map/tiles_packed.png') -16px -96px;
+}
+
+.wall-m-3 {
+    background: url('../assets/map/tiles_packed.png') -32px -96px;
+}
+
+.wall-m-4 {
+    background: url('../assets/map/tiles_packed.png') -48px -96px;
+}
+
+.wall-m-5 {
+    background: url('../assets/map/tiles_packed.png') -64px -96px;
+}
+
+.wall-b-1 {
+    background: url('../assets/map/tiles_packed.png') -0px -112px;
+}
+
+.wall-b-2 {
+    background: url('../assets/map/tiles_packed.png') -16px -112px;
+}
+
+.wall-b-3 {
+    background: url('../assets/map/tiles_packed.png') -64px -112px;
+}
+
+.bridge-1 {
+    background: url('../assets/map/tiles_packed.png') -144px -32px;
+}
+
+.bridge-2 {
+    background: url('../assets/map/tiles_packed.png') -160px -32px;
+}
+
+.bridge-3 {
+    background: url('../assets/map/tiles_packed.png') -176px -32px;
+}
+
+.bridge-4 {
+    background: url('../assets/map/tiles_packed.png') -128px -48px;
+}
+.bridge-5 {
+    background: url('../assets/map/tiles_packed.png') -144px -48px;
+}
+.bridge-6 {
+    background: url('../assets/map/tiles_packed.png') -160px -48px;
+}
+
+.rock-1 {
+    background: url('../assets/map/tiles_packed.png') -128px -112px;
+}
+
+.rock-2 {
+    background: url('../assets/map/tiles_packed.png') -144px -112px;
+}
+
+.mushroom-1 {
+    background: url('../assets/map/tiles_packed.png') -160px -98px;
+}
+
+.mushroom-2 {
+    background: url('../assets/map/tiles_packed.png') -160px -112px;
+}
+
+.stump-1 {
+    background: url('../assets/map/tiles_packed.png') -176px -112px;
+}
+
+.stump-2 {
+    background: url('../assets/map/tiles_packed.png') -192px -112px;
+}
+
+.flask-1 {
+    background: url('../assets/map/tiles_packed.png') -224px -96px;
+}
+
+.flask-2 {
+    background: url('../assets/map/tiles_packed.png') -240px -96px;
+}
+
+.flask-3 {
+    background: url('../assets/map/tiles_packed.png') -224px -112px;
+}
+
+.flask-4 {
+    background: url('../assets/map/tiles_packed.png') -240px -112px;
+}
+
+.tree-1 {
+    background: url('../assets/map/tiles_packed.png') -192px -0px;
+}
+
+.tree-2 {
+    background: url('../assets/map/tiles_packed.png') -208px -0px;
+}
+
+.tree-3 {
+    background: url('../assets/map/tiles_packed.png') -224px -0px;
+}
+
+.tree-4 {
+    background: url('../assets/map/tiles_packed.png') -240px -0px;
+}
+
+.tree-5 {
+    background: url('../assets/map/tiles_packed.png') -192px -16px;
+}
+
+.tree-6 {
+    background: url('../assets/map/tiles_packed.png') -208px -16px;
+}
+
+.tree-7 {
+    background: url('../assets/map/tiles_packed.png') -224px -16px;
+}
+
+.tree-8 {
+    background: url('../assets/map/tiles_packed.png') -240px -16px;
+}
+
+.tree-9 {
+    background: url('../assets/map/tiles_packed.png') -192px -32px;
+}
+
+.tree-10 {
+    background: url('../assets/map/tiles_packed.png') -208px -32px;
+}
+
+.tree-11 {
+    background: url('../assets/map/tiles_packed.png') -224px -32px;
+}
+
+.tree-12 {
+    background: url('../assets/map/tiles_packed.png') -240px -32px;
+}
+
+.tree-13 {
+    background: url('../assets/map/tiles_packed.png') -208px -48px;
+}
+
+.tree-14 {
+    background: url('../assets/map/tiles_packed.png') -224px -48px;
+}
