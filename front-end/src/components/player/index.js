@@ -20,6 +20,8 @@ function Player(props) {
         current: DIRECTION.DOWN,
         previous: DIRECTION.DOWN
     })
+
+    // To do: combine into useReducer hook
     const [step, setStep] = useState(0)
     const [stepCounter, setStepCounter] = useState(0)
 

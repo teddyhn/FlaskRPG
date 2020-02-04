@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import Typist from 'react-typist'
 import useEventListener from '@use-it/event-listener'
 
-import './index.css'
-
 function DialogueBox() {
     const [show, setShow] = useState(false)
 
@@ -30,7 +28,7 @@ function DialogueBox() {
                 <div 
                     className="dialogue-box"
                     style={{
-                        backgroundColor: 'rgba(49, 89, 145, 0.80)',
+                        backgroundImage: 'linear-gradient(to bottom, rgb(0, 0, 0, 0.99), rgb(0, 0, 0, 0.8)',
                         border: '1px solid #f5f2d0',
                         height: '100%',
                         width: '85%',
