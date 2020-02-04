@@ -2,6 +2,8 @@ import React from 'react'
 import AdminMapBuilder from './admin/map-builder'
 import World from './components/world'
 
+import './index.css'
+
 function App() {
   return (
     <div
