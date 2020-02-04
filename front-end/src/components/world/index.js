@@ -5,7 +5,7 @@ import MapObscure from '../map/obscure'
 import MapOverlay from '../map/overlay'
 import Player from '../player'
 
-import { trbl } from '../../data/maps/trbl'
+import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '../../data/maps'
 
 function World(props) {
     return (
@@ -18,9 +18,9 @@ function World(props) {
             }}
         >
             <DialogueBox /> 
-            <Map tiles={trbl.tiles} />
-            <MapOverlay overlay={trbl.overlay} />
-            <MapObscure obscure={trbl.obscure} />
+            <Map tiles={l.tiles} />
+            <MapOverlay overlay={l.overlay} />
+            <MapObscure obscure={l.obscure} />
             <Player />
         </div>
     )

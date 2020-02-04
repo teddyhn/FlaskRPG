@@ -1,6 +1,6 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../config/constants'
-import { tiles, overlay } from '../../data/maps/trbl'
+import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '../../data/maps'
 
 export default function handleMovement(player) {
 
@@ -34,19 +34,19 @@ export default function handleMovement(player) {
             return true
         }
 
-        if (typeof tiles[y][x] == 'string') {
-            if (tiles[y][x].endsWith('obs')) {
+        if (typeof l.tiles[y][x] == 'string') {
+            if (l.tiles[y][x].endsWith('obs')) {
                 return true
             }
         }
 
-        if (typeof overlay[y][x] == 'string') {
-            if (overlay[y][x].endsWith('obs')) {
+        if (typeof l.overlay[y][x] == 'string') {
+            if (l.overlay[y][x].endsWith('obs')) {
                 return true
             } 
         }
 
-        if (tiles[y][x] === 0) {
+        if (l.tiles[y][x] === 0) {
             return true
         }
 
