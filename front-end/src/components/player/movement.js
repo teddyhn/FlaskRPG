@@ -1,5 +1,6 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../config/constants'
+import { tiles, overlay } from '../../data/maps/trbl'
 
 export default function handleMovement(player) {
 
@@ -23,12 +24,50 @@ export default function handleMovement(player) {
                 ? newPos : oldPos
     }
 
+    function observeObstacles(newPos) {
+        const x = newPos[0] / 16
+        const y = newPos[1] / 16
+        
+        if (y < 0 || y > 14 || x < 0 || x > 19) {
+            return true
+        }
+
+        if (typeof tiles[y][x] == 'string') {
+            if (tiles[y][x].endsWith('obs')) {
+                return true
+            }
+        }
+
+        if (typeof overlay[y][x] == 'string') {
+            if (overlay[y][x].endsWith('obs')) {
+                return true
+            } 
+        }
+
+        if (tiles[y][x] == 0) {
+            return true
+        }
+
+        return false
+    }
+
     function dispatchMove(direction) {
         const oldPos = store.getState().player.position
+        const newPos = getNewPosition(direction)
+
+        if (observeObstacles(newPos)) {
+            return store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            position: oldPos
+                        }
+                    })
+        }
+
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
-                position: observeBoundaries(oldPos, getNewPosition(direction))
+                position: observeBoundaries(oldPos, newPos)
             }
         })
     }

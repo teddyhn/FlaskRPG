@@ -10,7 +10,8 @@ function App() {
         height: '100vh',
         width: '100vw',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'rgb(41, 38, 52)'
     }}
     >
       {/* <AdminMapBuilder /> */}

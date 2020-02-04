@@ -99,55 +99,55 @@
     background: url('../assets/map/tiles_packed.png') -112px -16px;
 }
 
-.wall-t-1 {
+.wall-t-1-obs {
     background: url('../assets/map/tiles_packed.png') -0px -80px;
 }
 
-.wall-t-2 {
+.wall-t-2-obs {
     background: url('../assets/map/tiles_packed.png') -16px -80px;
 }
 
-.wall-t-3 {
+.wall-t-3-obs {
     background: url('../assets/map/tiles_packed.png') -32px -80px;
 }
 
-.wall-t-4 {
+.wall-t-4-obs {
     background: url('../assets/map/tiles_packed.png') -48px -80px;
 }
 
-.wall-t-5 {
+.wall-t-5-obs {
     background: url('../assets/map/tiles_packed.png') -64px -80px;
 }
 
-.wall-m-1 {
+.wall-m-1-obs {
     background: url('../assets/map/tiles_packed.png') -0px -96px;
 }
 
-.wall-m-2 {
+.wall-m-2-obs {
     background: url('../assets/map/tiles_packed.png') -16px -96px;
 }
 
-.wall-m-3 {
+.wall-m-3-obs {
     background: url('../assets/map/tiles_packed.png') -32px -96px;
 }
 
-.wall-m-4 {
+.wall-m-4-obs {
     background: url('../assets/map/tiles_packed.png') -48px -96px;
 }
 
-.wall-m-5 {
+.wall-m-5-obs {
     background: url('../assets/map/tiles_packed.png') -64px -96px;
 }
 
-.wall-b-1 {
+.wall-b-1-obs {
     background: url('../assets/map/tiles_packed.png') -0px -112px;
 }
 
-.wall-b-2 {
+.wall-b-2-obs {
     background: url('../assets/map/tiles_packed.png') -16px -112px;
 }
 
-.wall-b-3 {
+.wall-b-3-obs {
     background: url('../assets/map/tiles_packed.png') -64px -112px;
 }
 
@@ -173,19 +173,19 @@
     background: url('../assets/map/tiles_packed.png') -160px -48px;
 }
 
-.rock-1 {
+.rock-1-obs {
     background: url('../assets/map/tiles_packed.png') -128px -112px;
 }
 
-.rock-2 {
+.rock-2-obs {
     background: url('../assets/map/tiles_packed.png') -144px -112px;
 }
 
-.mushroom-1 {
+.mushroom-1-obs {
     background: url('../assets/map/tiles_packed.png') -160px -98px;
 }
 
-.mushroom-2 {
+.mushroom-2-obs {
     background: url('../assets/map/tiles_packed.png') -160px -112px;
 }
 
@@ -206,11 +206,11 @@
     background: url('../assets/map/tiles_packed.png') -240px -96px;
 }
 
-.flask-3 {
+.flask-3-obs {
     background: url('../assets/map/tiles_packed.png') -224px -112px;
 }
 
-.flask-4 {
+.flask-4-obs {
     background: url('../assets/map/tiles_packed.png') -240px -112px;
 }
 
@@ -262,11 +262,11 @@
     background: url('../assets/map/tiles_packed.png') -240px -32px;
 }
 
-.tree-13 {
+.tree-13-obs {
     background: url('../assets/map/tiles_packed.png') -208px -48px;
 }
 
-.tree-14 {
+.tree-14-obs {
     background: url('../assets/map/tiles_packed.png') -224px -48px;
 }
 
