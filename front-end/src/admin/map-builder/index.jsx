@@ -63,8 +63,14 @@ const tiles = [
     "tree-12",
     "tree-13",
     "tree-14",
-
-
+    "grass-c-tl",
+    "grass-c-tr",
+    "grass-c-bl",
+    "grass-c-br",
+    "grass-c-bl-br",
+    "grass-c-tl-bl",
+    "grass-c-tr-br",
+    "grass-c-tl-tr"
 ]
 
 export default function AdminMapBuilder() {

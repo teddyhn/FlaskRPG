@@ -13,6 +13,7 @@ function App() {
         alignItems: 'center'
     }}
     >
+      {/* <AdminMapBuilder /> */}
       <World />
     </div>
   );

@@ -41,13 +41,14 @@ function Player(props) {
         <div
             style={{
                 position: 'absolute',
-                zIndex: '1000',
-                top: props.position[1],
+                zIndex: '3',
+                // Subtract 6px from top position so that player sprite looks more natural on map
+                top: props.position[1] - 6,
                 left: props.position[0],
                 background: `url(${walkSprite}) -${offset.left + step * SPRITE_SIZE}px -${offset.top - facing.current}px`,
                 imageRendering: 'pixelated',
                 width: '16px',
-                height: '16px'
+                height: '16px',
             }}>
             
         </div>

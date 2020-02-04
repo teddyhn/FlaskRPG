@@ -1,31 +1,31 @@
 import React from 'react'
 
-function OverlayTile(props) {
+function ObscureTile(props) {
     return <div className={`overlay ${props.tile}`} />
 }
 
-function OverlayRow(props) {
+function ObscureRow(props) {
     return <div className="row">
         {
-            props.tiles.map(tile => <OverlayTile tile={tile} />)
+            props.tiles.map(tile => <ObscureTile tile={tile} />)
         }
     </div>
 }
 
-function MapOverlay(props) {
+function MapObscure(props) {
     return (
         <div
             style={{
                 width: '320px',
                 height: '240px',
-                zIndex: '2',
+                zIndex: '1000',
                 position: 'absolute'
             }}>
             {
-                props.overlay.map(row => <OverlayRow tiles={row} />)
+                props.obscure.map(row => <ObscureRow tiles={row} />)
             }
         </div>
     )
 }
 
-export default MapOverlay
+export default MapObscure

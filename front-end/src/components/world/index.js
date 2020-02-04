@@ -1,9 +1,10 @@
 import React from 'react'
 import Map from '../map'
+import MapObscure from '../map/obscure'
 import MapOverlay from '../map/overlay'
 import Player from '../player'
 
-import { tiles, overlay } from '../../data/maps/trbl'
+import { tiles, overlay, obscure } from '../../data/maps/trbl'
 
 function World(props) {
     return (
@@ -16,6 +17,7 @@ function World(props) {
             }}>
             <Map tiles={tiles} />
             <MapOverlay overlay={overlay} />
+            <MapObscure obscure={obscure} />
             <Player />
         </div>
     )

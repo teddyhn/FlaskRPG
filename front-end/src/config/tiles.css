@@ -198,6 +198,7 @@
 }
 
 .flask-1 {
+    z-index: 1000;
     background: url('../assets/map/tiles_packed.png') -224px -96px;
 }
 
@@ -267,4 +268,36 @@
 
 .tree-14 {
     background: url('../assets/map/tiles_packed.png') -224px -48px;
+}
+
+.grass-c-tl {
+    background: url('../assets/map/tiles_packed.png') -48px -48px;
+}
+
+.grass-c-tr {
+    background: url('../assets/map/tiles_packed.png') -16px -48px;
+}
+
+.grass-c-bl {
+    background: url('../assets/map/tiles_packed.png') -48px -16px;
+}
+
+.grass-c-br {
+    background: url('../assets/map/tiles_packed.png') -16px -16px;
+}
+
+.grass-c-bl-br {
+    background: url('../assets/map/tiles_packed.png') -96px -48px;
+}
+
+.grass-c-tl-bl {
+    background: url('../assets/map/tiles_packed.png') -112px -48px;
+}
+
+.grass-c-tr-br {
+    background: url('../assets/map/tiles_packed.png') -96px -64px;
+}
+
+.grass-c-tl-tr {
+    background: url('../assets/map/tiles_packed.png') -112px -64px;
 }
