@@ -51,9 +51,8 @@ function Player(props) {
                 imageRendering: 'pixelated',
                 width: '16px',
                 height: '16px',
-            }}>
-            
-        </div>
+            }}
+        />
     )
 }
 

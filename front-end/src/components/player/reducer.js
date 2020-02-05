@@ -1,5 +1,6 @@
 const initialState = {
-    position: [160, 128]
+    position: [160, 128],
+    hidden: false
 }
 
 const playerReducer = (state=initialState, action) => {

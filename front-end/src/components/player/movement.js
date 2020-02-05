@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '../../config/store'
-import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH, BE_URL } from '../../config/constants'
+import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH, BE_URL, token } from '../../config/constants'
 
 export default function handleMovement(player) {
 
@@ -54,9 +54,10 @@ export default function handleMovement(player) {
         return false
     }
 
-    async function observeRoomTraversal(oldPos, direction) {
+    function observeRoomTraversal(oldPos, direction) {
         const currentRoom = store.getState().map.currentRoom
         const exits = currentRoom.exits
+
         const x = oldPos[0]
         const y = oldPos[1]
 
@@ -64,96 +65,21 @@ export default function handleMovement(player) {
 
         const x2 = newPos[0]
         const y2 = newPos[1]
-
-        const proxyurl = "http://localhost:8080/"
-        const token = '737724f7274afa224d652d1bbc46e1e9f2ad728f'
         
         if (x2 >= MAP_WIDTH && exits.includes("EAST")) {
-            await axios({
-                method: 'post',
-                url: proxyurl + BE_URL + 'api/adv/move',
-                headers: {
-                    Authorization: 'Token ' + token
-                },
-                data: {
-                    direction: 'e'
-                }
-            })
-
-            store.dispatch({
-                type: 'TRAVERSE_ROOM',
-                payload: {
-                    currentRoom: null
-                }
-            })
-
-            return [0, y]
+            return { coords: [0, y], direction: "EAST" }
         }
 
         if (x2 < 0 && exits.includes("WEST")) {
-            await axios({
-                method: 'post',
-                url: proxyurl + BE_URL + 'api/adv/move',
-                headers: {
-                    Authorization: 'Token ' + token
-                },
-                data: {
-                    direction: 'w'
-                }
-            })
-
-            store.dispatch({
-                type: 'TRAVERSE_ROOM',
-                payload: {
-                    currentRoom: null
-                }
-            })
-
-            return [MAP_WIDTH - 16, y]
+            return { coords: [MAP_WIDTH - 16, y], direction: "WEST" }
         }
 
         if (y2 >= MAP_HEIGHT && exits.includes("SOUTH")) {
-            await axios({
-                method: 'post',
-                url: proxyurl + BE_URL + 'api/adv/move',
-                headers: {
-                    Authorization: 'Token ' + token
-                },
-                data: {
-                    direction: 's'
-                }
-            })
-
-            store.dispatch({
-                type: 'TRAVERSE_ROOM',
-                payload: {
-                    currentRoom: null
-                }
-            })
-
-            return [x, 0]
+            return { coords: [x, 0], direction: "SOUTH"}
         }
 
         if (y2 < 0 && exits.includes("NORTH")) {
-            await axios({
-                method: 'post',
-                url: proxyurl + BE_URL + 'api/adv/move',
-                headers: {
-                    Authorization: 'Token ' + token
-                },
-                data: {
-                    direction: 'n'
-                }
-            })
-
-            store.dispatch({
-                type: 'TRAVERSE_ROOM',
-                payload: {
-                    currentRoom: null
-                }
-            })
-
-            return [x, MAP_HEIGHT - 16]
+            return { coords: [x, MAP_HEIGHT - 16], direction: "NORTH" }
         }
 
         return false
@@ -162,45 +88,120 @@ export default function handleMovement(player) {
     async function dispatchMove(direction) {
         const oldPos = store.getState().player.position
         const newPos = getNewPosition(direction)
-        const roomId = store.getState().map.roomId
-
-        console.log(roomId)
 
         const roomTraverseXY = observeRoomTraversal(oldPos, direction)
 
         const proxyurl = "http://localhost:8080/"
-        const token = '737724f7274afa224d652d1bbc46e1e9f2ad728f'
 
         if (roomTraverseXY) {
-            let newRoomId = roomId
 
-            await axios.get(proxyurl + BE_URL + 'api/adv/init', {
-                    headers: {
-                        Authorization: 'Token ' + token
-                    }
-                }).then(res => newRoomId = res.data.id)
-
-            console.log(newRoomId)
-
-            while (true) {
-                if (roomId !== newRoomId) {
-                    return (
-                        store.dispatch({
-                                type: 'MOVE_PLAYER',
-                                payload: {
-                                    position: roomTraverseXY
-                            }
-                        })
-                    )
-                    break
-                } else return (
-                    store.dispatch({
-                        type: 'MOVE_PLAYER',
-                        payload: {
-                            position: oldPos
+            switch(roomTraverseXY.direction) {
+                case ("EAST"):
+                    await axios({
+                        method: 'post',
+                        url: proxyurl + BE_URL + 'api/adv/move',
+                        headers: {
+                            Authorization: 'Token ' + token
+                        },
+                        data: {
+                            direction: 'e'
                         }
                     })
-                )
+
+                    await store.dispatch({
+                        type: 'TRAVERSE_ROOM',
+                        payload: {
+                            currentRoom: null
+                        }
+                    })
+
+                    return await store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            position: roomTraverseXY.coords
+                        }
+                    })
+
+                case ("WEST"):
+                    await axios({
+                        method: 'post',
+                        url: proxyurl + BE_URL + 'api/adv/move',
+                        headers: {
+                            Authorization: 'Token ' + token
+                        },
+                        data: {
+                            direction: 'w'
+                        }
+                    })
+
+                    await store.dispatch({
+                        type: 'TRAVERSE_ROOM',
+                        payload: {
+                            currentRoom: null
+                        }
+                    })
+
+                    return await store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            position: roomTraverseXY.coords
+                        }
+                    })
+
+                case ("SOUTH"):
+                    await axios({
+                        method: 'post',
+                        url: proxyurl + BE_URL + 'api/adv/move',
+                        headers: {
+                            Authorization: 'Token ' + token
+                        },
+                        data: {
+                            direction: 's'
+                        }
+                    })
+
+                    await store.dispatch({
+                        type: 'TRAVERSE_ROOM',
+                        payload: {
+                            currentRoom: null
+                        }
+                    })
+
+                    return await store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            position: roomTraverseXY.coords
+                        }
+                    })
+
+                case ("NORTH"):
+                    await axios({
+                        method: 'post',
+                        url: proxyurl + BE_URL + 'api/adv/move',
+                        headers: {
+                            Authorization: 'Token ' + token
+                        },
+                        data: {
+                            direction: 'n'
+                        }
+                    })
+
+                    await store.dispatch({
+                        type: 'TRAVERSE_ROOM',
+                        payload: {
+                            currentRoom: null
+                        }
+                    })
+
+                    return await store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            position: roomTraverseXY.coords
+                        }
+                    })
+
+                default:
+                    return
             }
         }
 
