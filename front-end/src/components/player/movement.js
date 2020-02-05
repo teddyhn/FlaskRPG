@@ -34,19 +34,19 @@ export default function handleMovement(player) {
             return true
         }
 
-        if (typeof l.tiles[y][x] == 'string') {
-            if (l.tiles[y][x].endsWith('obs')) {
+        if (typeof tbl.tiles[y][x] == 'string') {
+            if (tbl.tiles[y][x].endsWith('obs')) {
                 return true
             }
         }
 
-        if (typeof l.overlay[y][x] == 'string') {
-            if (l.overlay[y][x].endsWith('obs')) {
+        if (typeof tbl.overlay[y][x] == 'string') {
+            if (tbl.overlay[y][x].endsWith('obs')) {
                 return true
             } 
         }
 
-        if (l.tiles[y][x] === 0) {
+        if (tbl.tiles[y][x] === 0) {
             return true
         }
 
