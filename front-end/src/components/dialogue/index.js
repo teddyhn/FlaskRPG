@@ -44,7 +44,7 @@ function DialogueBox() {
                     >
                         <Typist
                             stdTypingDelay={0}
-                            avgTypingDelay={25}
+                            avgTypingDelay={30}
                             cursor={{ show: false }}
                         >
                             Flask has wares, if you have coin.

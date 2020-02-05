@@ -1,5 +1,6 @@
 const initialState = {
-    currentRoom: null
+    currentRoom: null,
+    roomId: null
 }
 
 const mapReducer = (state=initialState, action) => {

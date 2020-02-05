@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
 import DialogueBox from '../dialogue'
 import Map from '../map'
@@ -12,15 +13,20 @@ import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '..
 
 function World(props) {
     const [currentRoom, setCurrentRoom] = useState([])
+    const [roomId, setRoomId] = useState()
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "http://localhost:8080/"
+    const token = '737724f7274afa224d652d1bbc46e1e9f2ad728f'
 
     const fetchCurrentRoom = async () => {
         await axios.get(proxyurl + BE_URL + 'api/adv/init', {
             headers: {
-                Authorization: 'Token ' + '98ea7d794810c0a1642f4ddfeee4b7aecdeda9da'
+                Authorization: 'Token ' + token
             }
-        }).then(res => setCurrentRoom(res.data.exits))
+        }).then(res => {
+            setCurrentRoom(res.data.exits)
+            setRoomId(res.data.id)
+        })
     }
 
     const determineRoomRender = (exits) => {
@@ -31,7 +37,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: b
+                        currentRoom: b,
+                        roomId: roomId
                     }
                 })
                 return b
@@ -39,7 +46,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: bl
+                        currentRoom: bl,
+                        roomId: roomId
                     }
                 })
                 return bl
@@ -47,7 +55,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: l
+                        currentRoom: l,
+                        roomId: roomId
                     }
                 })
                 return l
@@ -55,7 +64,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: r
+                        currentRoom: r,
+                        roomId: roomId
                     }
                 })
                 return r
@@ -63,7 +73,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: rb
+                        currentRoom: rb,
+                        roomId: roomId
                     }
                 })
                 return rb
@@ -71,7 +82,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: rbl
+                        currentRoom: rbl,
+                        roomId: roomId
                     }
                 })
                 return rbl
@@ -79,7 +91,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: rl
+                        currentRoom: rl,
+                        roomId: roomId
                     }
                 })
                 return rl
@@ -87,7 +100,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: t
+                        currentRoom: t,
+                        roomId: roomId
                     }
                 })
                 return t
@@ -95,7 +109,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: tb
+                        currentRoom: tb,
+                        roomId: roomId
                     }
                 })
                 return tb
@@ -103,7 +118,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: tbl
+                        currentRoom: tbl,
+                        roomId: roomId
                     }
                 })
                 return tbl
@@ -111,7 +127,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: tl
+                        currentRoom: tl,
+                        roomId: roomId
                     }
                 })
                 return tl
@@ -119,7 +136,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: tr
+                        currentRoom: tr,
+                        roomId: roomId
                     }
                 })
                 return tr
@@ -127,7 +145,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: trb
+                        currentRoom: trb,
+                        roomId: roomId
                     }
                 })
                 return trb
@@ -135,7 +154,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: trbl
+                        currentRoom: trbl,
+                        roomId: roomId
                     }
                 })
                 return trbl
@@ -143,7 +163,8 @@ function World(props) {
                 store.dispatch({
                     type: 'TRAVERSE_ROOM',
                     payload: {
-                        currentRoom: trl
+                        currentRoom: trl,
+                        roomId: roomId
                     }
                 })
                 return trl
@@ -166,7 +187,7 @@ function World(props) {
 
     useEffect(() => {
         fetchCurrentRoom()
-    }, [])
+    }, [props.currentRoom])
 
     return (
         <div
@@ -177,9 +198,16 @@ function World(props) {
                 transform: 'scale(2)'
             }}
         >
+            {/* Add loading animation to room render if necessary (it probably will be) */}
             {currentRoom.length ? renderRoom(determineRoomRender(currentRoom)) : null}
         </div>
     )
 }
 
-export default World
+function mapStateToProps(state) {
+    return {
+        ...state.map
+    }
+}
+
+export default connect(mapStateToProps)(World)
