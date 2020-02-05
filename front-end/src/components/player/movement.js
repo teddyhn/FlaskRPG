@@ -1,6 +1,5 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../config/constants'
-import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '../../data/maps'
 
 export default function handleMovement(player) {
 
@@ -27,6 +26,7 @@ export default function handleMovement(player) {
     }
 
     function observeObstacles(newPos) {
+        const currentRoom = store.getState().map.currentRoom
         const x = newPos[0] / 16
         const y = newPos[1] / 16
         
@@ -34,19 +34,19 @@ export default function handleMovement(player) {
             return true
         }
 
-        if (typeof tbl.tiles[y][x] == 'string') {
-            if (tbl.tiles[y][x].endsWith('obs')) {
+        if (typeof currentRoom.tiles[y][x] == 'string') {
+            if (currentRoom.tiles[y][x].endsWith('obs')) {
                 return true
             }
         }
 
-        if (typeof tbl.overlay[y][x] == 'string') {
-            if (tbl.overlay[y][x].endsWith('obs')) {
+        if (typeof currentRoom.overlay[y][x] == 'string') {
+            if (currentRoom.overlay[y][x].endsWith('obs')) {
                 return true
             } 
         }
 
-        if (tbl.tiles[y][x] === 0) {
+        if (currentRoom.tiles[y][x] === 0) {
             return true
         }
 
