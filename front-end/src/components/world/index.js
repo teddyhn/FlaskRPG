@@ -157,6 +157,8 @@ function World(props) {
     }
 
     const renderRoom = (room) => {
+        store.dispatch({ type: 'REVEAL_PLAYER' })
+
         return (
             <>
                 <DialogueBox /> 

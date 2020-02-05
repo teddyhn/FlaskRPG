@@ -9,6 +9,11 @@ const playerReducer = (state=initialState, action) => {
             return {
                 ...action.payload
             }
+        case 'REVEAL_PLAYER':
+            return {
+                ...state,
+                hidden: false
+            }
         default:
             return state
     }

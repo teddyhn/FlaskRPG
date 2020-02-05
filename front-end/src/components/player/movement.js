@@ -95,6 +95,8 @@ export default function handleMovement(player) {
 
         if (roomTraverseXY) {
 
+            store.dispatch({ type: 'HIDE_PLAYER' })
+
             switch(roomTraverseXY.direction) {
                 case ("EAST"):
                     await axios({
@@ -118,7 +120,8 @@ export default function handleMovement(player) {
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: roomTraverseXY.coords
+                            position: roomTraverseXY.coords,
+                            hidden: true
                         }
                     })
 
@@ -144,7 +147,8 @@ export default function handleMovement(player) {
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: roomTraverseXY.coords
+                            position: roomTraverseXY.coords,
+                            hidden: true
                         }
                     })
 
@@ -170,7 +174,8 @@ export default function handleMovement(player) {
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: roomTraverseXY.coords
+                            position: roomTraverseXY.coords,
+                            hidden: true
                         }
                     })
 
@@ -196,7 +201,8 @@ export default function handleMovement(player) {
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: roomTraverseXY.coords
+                            position: roomTraverseXY.coords,
+                            hidden: true
                         }
                     })
 
@@ -209,7 +215,8 @@ export default function handleMovement(player) {
             return store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: oldPos
+                            position: oldPos,
+                            hidden: false
                         }
                     })
         }
@@ -217,7 +224,8 @@ export default function handleMovement(player) {
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
-                position: observeBoundaries(oldPos, newPos)
+                position: observeBoundaries(oldPos, newPos),
+                hidden: false
             }
         })
     }
