@@ -20,6 +20,8 @@ function Player(props) {
         current: DIRECTION.DOWN,
         previous: DIRECTION.DOWN
     })
+
+    // To do: combine into useReducer hook
     const [step, setStep] = useState(0)
     const [stepCounter, setStepCounter] = useState(0)
 
@@ -35,22 +37,25 @@ function Player(props) {
     useEffect(() => {
         setStepCounter(prevState => (prevState < MAX_STEP ? prevState + 1 : 0))
         setStep(STEP_LOOP[stepCounter])
-    }, [facing])
+    }, [facing, props.hidden])
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                zIndex: '1000',
-                top: props.position[1],
-                left: props.position[0],
-                background: `url(${walkSprite}) -${offset.left + step * SPRITE_SIZE}px -${offset.top - facing.current}px`,
-                imageRendering: 'pixelated',
-                width: '16px',
-                height: '16px'
-            }}>
-            
-        </div>
+        <>
+            {props.hidden ? null : 
+            <div
+                style={{
+                    position: 'absolute',
+                    zIndex: '3',
+                    // Subtract 6px from top position so that player sprite looks more natural on map
+                    top: props.position[1] - 6,
+                    left: props.position[0],
+                    background: `url(${walkSprite}) -${offset.left + step * SPRITE_SIZE}px -${offset.top - facing.current}px`,
+                    imageRendering: 'pixelated',
+                    width: '16px',
+                    height: '16px',
+                }}
+            />}
+        </>
     )
 }
 
