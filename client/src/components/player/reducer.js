@@ -1,4 +1,5 @@
 const initialState = {
+    facing: 'DOWN',
     position: [160, 128],
     hidden: false,
     disableMovement: false
@@ -6,6 +7,11 @@ const initialState = {
 
 const playerReducer = (state=initialState, action) => {
     switch(action.type) {
+        case 'SET_FACING':
+            return {
+                ...state,
+                ...action.payload
+            }
         case 'MOVE_PLAYER':
             return {
                 ...state,
