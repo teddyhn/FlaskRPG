@@ -16,6 +16,7 @@ const spriteDirMap = {
 }
 
 function Player(props) {
+    const [timestamp, setTimestamp] = useState(0)
     const [sameDir, setSameDir] = useState(false)
 
     const didMountRef = useRef(false)
@@ -43,7 +44,11 @@ function Player(props) {
             setSameDir(prevState => !prevState)
         }
 
-        handleMovement(moveCode)
+        // If 180ms have not passed (approximately animation speed) skip handling movement
+        if (timestamp + 180 < Date.now()) {
+            handleMovement(moveCode)
+            setTimestamp(Date.now())
+        }
 
         return store.dispatch({
             type: 'SET_FACING',
@@ -86,7 +91,7 @@ function Player(props) {
 
             let currentFrame = 0
             let currentTick = 0
-            const ticksPerFrame = 45
+            const ticksPerFrame = 30
 
             const update = () => {
                 currentTick++
@@ -138,10 +143,9 @@ function Player(props) {
                 style={{
                     position: 'absolute',
                     zIndex: '3',
-                    // Subtract 6px from top position so that player sprite looks more natural on map
+                    // Subtract 10px from top position so that player sprite looks more natural on map
                     top: props.position[1] - 10,
                     left: props.position[0],
-                    // background: `url(${walkSprite}) -${offset.left + step * SPRITE_SIZE}px -${offset.top - facing.current}px`,
                     imageRendering: 'pixelated'
                 }}
             >

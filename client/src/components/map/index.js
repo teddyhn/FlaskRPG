@@ -14,8 +14,8 @@ function MapRow(props) {
 }
 
 function Map(props) {
-    store.dispatch({ type: 'REVEAL_PLAYER' })
-    store.dispatch({ type: 'ENABLE_MOVEMENT' })
+    
+   store.dispatch({ type: 'REVEAL_PLAYER' })
 
     return (
         <div

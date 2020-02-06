@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import DialogueBox from '../dialogue'
+import Loading from '../loading'
 import Map from '../map'
 import MapObscure from '../map/obscure'
 import MapOverlay from '../map/overlay'
@@ -160,7 +161,8 @@ function World(props) {
     const renderRoom = (room) => {
         return (
             <>
-                <DialogueBox /> 
+                <DialogueBox />
+                <Loading />
                 <Map tiles={room.tiles} />
                 <MapOverlay overlay={room.overlay} />
                 <MapObscure obscure={room.obscure} />
