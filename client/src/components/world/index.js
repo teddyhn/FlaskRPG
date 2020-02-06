@@ -16,10 +16,8 @@ import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '..
 function World(props) {
     const [currentRoom, setCurrentRoom] = useState([])
 
-    const proxyurl = "http://localhost:8080/"
-
     const fetchCurrentRoom = async () => {
-        await axios.get(proxyurl + BE_URL + 'api/adv/init', {
+        await axios.get(BE_URL + 'api/adv/init/', {
             headers: {
                 Authorization: 'Token ' + token
             }
