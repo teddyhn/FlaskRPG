@@ -8,6 +8,7 @@ import MapOverlay from '../map/overlay'
 import Player from '../player'
 import store from '../../config/store'
 
+import '../../config/tiles.css'
 import { BE_URL, token } from '../../config/constants'
 import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '../../data/maps'
 
@@ -157,10 +158,6 @@ function World(props) {
     }
 
     const renderRoom = (room) => {
-        store.dispatch({ type: 'REVEAL_PLAYER' })
-
-        store.dispatch({ type: 'ENABLE_MOVEMENT' })
-
         return (
             <>
                 <DialogueBox /> 
@@ -179,14 +176,25 @@ function World(props) {
     return (
         <div
             style={{
-                position: 'relative',
-                width: '320px',
-                height: '240px',
-                transform: 'scale(2)'
+                display: 'flex',
+                height: '100vh',
+                width: '100vw',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgb(41, 38, 52)'
             }}
         >
-            {/* Add loading animation to room render if necessary (it probably will be) */}
-            {currentRoom.length ? renderRoom(determineRoomRender(currentRoom)) : null}
+            <div
+                style={{
+                    position: 'relative',
+                    width: '320px',
+                    height: '240px',
+                    transform: 'scale(2)'
+                }}
+             >
+                {/* Add loading animation to room render if necessary (it probably will be) */}
+                {currentRoom.length ? renderRoom(determineRoomRender(currentRoom)) : null}
+            </div>
         </div>
     )
 }

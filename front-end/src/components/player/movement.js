@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../../config/store'
 import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH, BE_URL, token } from '../../config/constants'
 
-export default function handleMovement(player) {
+export default function handleMovement(direction) {
 
     function getNewPosition(direction) {
         const oldPos = store.getState().player.position
@@ -217,8 +217,7 @@ export default function handleMovement(player) {
             return store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
-                            position: oldPos,
-                            hidden: false
+                            position: oldPos
                         }
                     })
         }
@@ -226,14 +225,12 @@ export default function handleMovement(player) {
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
-                position: observeBoundaries(oldPos, newPos),
-                hidden: false
+                position: observeBoundaries(oldPos, newPos)
             }
         })
     }
 
-    function handleKeydown(e) {
-        e.preventDefault()
+    function handleMove(direction) {
 
         // If player movement is disabled, escape from function
         const disabled = store.getState().player.disableMovement
@@ -241,23 +238,21 @@ export default function handleMovement(player) {
             return
         }
 
-        switch(e.keyCode) {
-            case 37:
+        switch(direction) {
+            case 'LEFT':
                 return dispatchMove('WEST')
-            case 38:
+            case 'UP':
                 return dispatchMove('NORTH')
-            case 39:
+            case 'RIGHT':
                 return dispatchMove('EAST')
-            case 40:
+            case 'DOWN':
                 return dispatchMove('SOUTH')
             default:
                 return
         }
     }
 
-    window.addEventListener('keydown', e => {
-        handleKeydown(e)
-    })
+    handleMove(direction)
 
-    return player
+    return
 }

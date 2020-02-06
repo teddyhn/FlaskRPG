@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import store from '../../config/store'
 import walkSprite from '../../assets/player/player.png'
 import handleMovement from './movement'
 import useEventListener from '@use-it/event-listener'
@@ -26,12 +27,22 @@ function Player(props) {
     const [stepCounter, setStepCounter] = useState(0)
 
     useEventListener('keydown', ({ code }) => {
+        // If player movement is disabled, escape from function
+        const disabled = store.getState().player.disableMovement
+        if (disabled) {
+            return
+        }
+
         if (code.indexOf('Arrow') === -1) return
         const direction = DIRECTION[code.replace('Arrow', '').toUpperCase()]
         setFacing(prevState => ({
             current: direction,
             previous: prevState.current
         }))
+
+        const moveCode = code.replace('Arrow', '').toUpperCase()
+
+        handleMovement(moveCode)
     })
 
     useEffect(() => {
@@ -65,4 +76,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(handleMovement(Player))
+export default connect(mapStateToProps)(Player)
