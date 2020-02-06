@@ -1,4 +1,5 @@
 import React from 'react'
+import store from '../../config/store'
 
 function MapTile(props) {
     return <div className={`tile ${props.tile}`} />
@@ -13,6 +14,9 @@ function MapRow(props) {
 }
 
 function Map(props) {
+    store.dispatch({ type: 'REVEAL_PLAYER' })
+    store.dispatch({ type: 'ENABLE_MOVEMENT' })
+
     return (
         <div
             style={{

@@ -14,7 +14,7 @@ function App() {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgb(41, 38, 52)'
-    }}
+      }}
     >
       {/* <AdminMapBuilder /> */}
       <World />
