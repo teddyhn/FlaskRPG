@@ -97,6 +97,8 @@ export default function handleMovement(player) {
 
             store.dispatch({ type: 'HIDE_PLAYER' })
 
+            store.dispatch({ type: 'DISABLE_MOVEMENT' })
+
             switch(roomTraverseXY.direction) {
                 case ("EAST"):
                     await axios({
@@ -232,6 +234,12 @@ export default function handleMovement(player) {
 
     function handleKeydown(e) {
         e.preventDefault()
+
+        // If player movement is disabled, escape from function
+        const disabled = store.getState().player.disableMovement
+        if (disabled) {
+            return
+        }
 
         switch(e.keyCode) {
             case 37:
