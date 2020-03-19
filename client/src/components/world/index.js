@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import DialogueBox from '../dialogue'
+import Loading from '../loading'
 import Map from '../map'
 import MapObscure from '../map/obscure'
 import MapOverlay from '../map/overlay'
@@ -15,10 +16,8 @@ import { b, bl, l, r, rb, rbl, rl, t, tb, tbl, tl, tr, trb, trbl, trl } from '..
 function World(props) {
     const [currentRoom, setCurrentRoom] = useState([])
 
-    const proxyurl = "http://localhost:8080/"
-
     const fetchCurrentRoom = async () => {
-        await axios.get(proxyurl + BE_URL + 'api/adv/init', {
+        await axios.get(BE_URL + 'api/adv/init/', {
             headers: {
                 Authorization: 'Token ' + token
             }
@@ -160,7 +159,8 @@ function World(props) {
     const renderRoom = (room) => {
         return (
             <>
-                <DialogueBox /> 
+                <DialogueBox />
+                <Loading />
                 <Map tiles={room.tiles} />
                 <MapOverlay overlay={room.overlay} />
                 <MapObscure obscure={room.obscure} />

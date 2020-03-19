@@ -91,19 +91,19 @@ export default function handleMovement(direction) {
 
         const roomTraverseXY = observeRoomTraversal(oldPos, direction)
 
-        const proxyurl = "http://localhost:8080/"
-
         if (roomTraverseXY) {
 
             store.dispatch({ type: 'HIDE_PLAYER' })
 
             store.dispatch({ type: 'DISABLE_MOVEMENT' })
 
+            store.dispatch({ type: 'SET_LOADING', payload: true })
+
             switch(roomTraverseXY.direction) {
                 case ("EAST"):
                     await axios({
                         method: 'post',
-                        url: proxyurl + BE_URL + 'api/adv/move',
+                        url: BE_URL + 'api/adv/move/',
                         headers: {
                             Authorization: 'Token ' + token
                         },
@@ -119,6 +119,13 @@ export default function handleMovement(direction) {
                         }
                     })
 
+                    await store.dispatch({ 
+                        type: 'SET_LOADING', 
+                        payload: false 
+                    })
+
+                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
@@ -130,7 +137,7 @@ export default function handleMovement(direction) {
                 case ("WEST"):
                     await axios({
                         method: 'post',
-                        url: proxyurl + BE_URL + 'api/adv/move',
+                        url: BE_URL + 'api/adv/move/',
                         headers: {
                             Authorization: 'Token ' + token
                         },
@@ -146,6 +153,13 @@ export default function handleMovement(direction) {
                         }
                     })
 
+                    await store.dispatch({ 
+                        type: 'SET_LOADING', 
+                        payload: false 
+                    })
+                    
+                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
@@ -157,7 +171,7 @@ export default function handleMovement(direction) {
                 case ("SOUTH"):
                     await axios({
                         method: 'post',
-                        url: proxyurl + BE_URL + 'api/adv/move',
+                        url: BE_URL + 'api/adv/move/',
                         headers: {
                             Authorization: 'Token ' + token
                         },
@@ -173,6 +187,13 @@ export default function handleMovement(direction) {
                         }
                     })
 
+                    await store.dispatch({ 
+                        type: 'SET_LOADING', 
+                        payload: false 
+                    })
+                    
+                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
@@ -184,7 +205,7 @@ export default function handleMovement(direction) {
                 case ("NORTH"):
                     await axios({
                         method: 'post',
-                        url: proxyurl + BE_URL + 'api/adv/move',
+                        url: BE_URL + 'api/adv/move/',
                         headers: {
                             Authorization: 'Token ' + token
                         },
@@ -199,6 +220,13 @@ export default function handleMovement(direction) {
                             currentRoom: null
                         }
                     })
+
+                    await store.dispatch({ 
+                        type: 'SET_LOADING', 
+                        payload: false 
+                    })
+                    
+                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
                     return await store.dispatch({
                         type: 'MOVE_PLAYER',
