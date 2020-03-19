@@ -1,1 +1,1 @@
-# TBB-FE
+This is the front end client built for a Flask API server demonstrating a room generation algorithm in a game appropriately named... FlaskRPG.
