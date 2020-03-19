@@ -28,8 +28,9 @@ export default function handleInteraction(direction) {
         const currentRoom = store.getState().map.currentRoom
         const isShow = store.getState().dialogue.show
         const itemsOpen = store.getState().items.show
+        const shopOpen = store.getState().shop.show
 
-        if (itemsOpen) {
+        if (itemsOpen || shopOpen) {
             return
         }
 
@@ -62,7 +63,7 @@ export default function handleInteraction(direction) {
 
         if (typeof currentRoom.overlay[y][x] ==='string') {
             
-         // If target is shopkeeper, handle logic for store
+            // If target is shopkeeper, handle logic for store
 
             const nextTile = currentRoom.overlay[y][x]
             const target = nextTile.slice(0, nextTile.indexOf('-'))
