@@ -20,7 +20,7 @@ function Loading(props) {
                         zIndex: '1001',
                         top: '0',
                         color: 'white',
-                        fontSize: '0.4rem',
+                        fontSize: '0.5rem',
                         width: '100%'
                     }}
                 >
@@ -28,7 +28,7 @@ function Loading(props) {
                         className="loading-animation"
                         style={{
                             height: '100%',
-                            width: '20%',
+                            width: '22.5%',
                             padding: '0.25rem'
                         }}
                     >
@@ -61,6 +61,7 @@ function Loading(props) {
                                     width: '16px',
                                     imageRendering: 'pixelated'
                                 }}
+                                alt="A slowly rotating frog"
                             />
                         </div>
                     </div>

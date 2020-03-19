@@ -5,6 +5,7 @@ import handleMovement from './movement'
 import useEventListener from '@use-it/event-listener'
 import { SPRITE_SIZE } from '../../config/constants'
 import store from '../../config/store'
+import handleInteraction from './interaction'
 
 const STEP_LOOP = [1, 0, 1]
 const STEP_LOOP2 = [1, 2, 1]
@@ -36,26 +37,32 @@ function Player(props) {
             return
         }
 
+        if (code === 'Enter') {
+            handleInteraction(props.facing)
+        }
+
         if (code.indexOf('Arrow') === -1) return
+
+        const dialogueIsOpen = store.getState().dialogue.show
 
         const moveCode = code.replace('Arrow', '').toUpperCase()
 
-        if (props.facing == moveCode) {
+        if (props.facing === moveCode) {
             setSameDir(prevState => !prevState)
         }
 
         // If 180ms have not passed (approximately animation speed) skip handling movement
-        if (timestamp + 180 < Date.now()) {
+        if (timestamp + 180 < Date.now() && !dialogueIsOpen) {
             handleMovement(moveCode)
             setTimestamp(Date.now())
-        }
 
-        return store.dispatch({
-            type: 'SET_FACING',
-            payload: {
-                facing: moveCode
-            }
-        })
+            return store.dispatch({
+                type: 'SET_FACING',
+                payload: {
+                    facing: moveCode
+                }
+            })
+        }
     })
 
     useEffect(() => {
@@ -91,7 +98,7 @@ function Player(props) {
 
             let currentFrame = 0
             let currentTick = 0
-            const ticksPerFrame = 30
+            const ticksPerFrame = 15
 
             const update = () => {
                 currentTick++
