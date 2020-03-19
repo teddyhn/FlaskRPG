@@ -124,15 +124,15 @@ export default function handleMovement(direction) {
                         payload: false 
                     })
 
-                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
-
-                    return await store.dispatch({
+                    await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
                             position: roomTraverseXY.coords,
                             hidden: true
                         }
                     })
+
+                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
                 case ("WEST"):
                     await axios({
@@ -158,15 +158,15 @@ export default function handleMovement(direction) {
                         payload: false 
                     })
                     
-                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
-
-                    return await store.dispatch({
+                    await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
                             position: roomTraverseXY.coords,
                             hidden: true
                         }
                     })
+
+                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
                 case ("SOUTH"):
                     await axios({
@@ -192,15 +192,15 @@ export default function handleMovement(direction) {
                         payload: false 
                     })
                     
-                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
-
-                    return await store.dispatch({
+                    await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
                             position: roomTraverseXY.coords,
                             hidden: true
                         }
                     })
+
+                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
                 case ("NORTH"):
                     await axios({
@@ -225,16 +225,16 @@ export default function handleMovement(direction) {
                         type: 'SET_LOADING', 
                         payload: false 
                     })
-                    
-                    await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
-                    return await store.dispatch({
+                    await store.dispatch({
                         type: 'MOVE_PLAYER',
                         payload: {
                             position: roomTraverseXY.coords,
                             hidden: true
                         }
                     })
+
+                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
 
                 default:
                     return
