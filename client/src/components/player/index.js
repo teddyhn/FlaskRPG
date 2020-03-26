@@ -52,7 +52,7 @@ function Player(props) {
         }
 
         // If 180ms have not passed (approximately animation speed) skip handling movement
-        if (timestamp + 180 < Date.now() && !dialogueIsOpen) {
+        if (timestamp + 150 < Date.now() && !dialogueIsOpen) {
             handleMovement(moveCode)
             setTimestamp(Date.now())
 
@@ -98,7 +98,7 @@ function Player(props) {
 
             let currentFrame = 0
             let currentTick = 0
-            const ticksPerFrame = 15
+            const ticksPerFrame = 25
 
             const update = () => {
                 currentTick++
