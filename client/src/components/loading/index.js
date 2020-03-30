@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Typist from 'react-typist'
-import bigfrog from '../../assets/map/bigfrog.gif'
 
 function Loading(props) {
     const [count, setCount] = useState(1)
@@ -40,7 +39,7 @@ function Loading(props) {
                             }}
                         >
                             <div style={{ display: 'flex' }}>
-                                loadin
+                                Loadin
                                 {count ? (
                                 <Typist
                                     avgTypingDelay={250}
@@ -54,15 +53,6 @@ function Loading(props) {
                                     ""
                                 )}
                             </div>
-                            <img
-                                src={bigfrog}
-                                style={{
-                                    height: '16px',
-                                    width: '16px',
-                                    imageRendering: 'pixelated'
-                                }}
-                                alt="A slowly rotating frog"
-                            />
                         </div>
                     </div>
                 </div>
