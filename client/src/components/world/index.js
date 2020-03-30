@@ -55,8 +55,6 @@ function World(props) {
                 items: res.data.items
             }
         })
-    }).catch(err => {
-        console.log(err.response)
     })
   }
 
