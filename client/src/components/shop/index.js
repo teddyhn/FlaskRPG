@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import store from '../../config/store'
 import Typist from 'react-typist'
-import { BE_URL, token } from '../../config/constants'
+import { BE_URL } from '../../config/constants'
 
 function Shop(props) {
+    const token = localStorage.getItem("token")
 
     const reduceItemDuplicates = (items) => {
         var prices = {};

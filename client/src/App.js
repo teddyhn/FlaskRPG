@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import Splash from './components/splash'
 import World from './components/world'
 import axios from 'axios'
+import store from './config/store'
 
 import './index.css'
 import { BE_URL } from './config/constants'
 
-function App() {
+function App(props) {
   const [validToken, setValidToken] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -29,7 +31,7 @@ function App() {
 
   useEffect(() => {
     checkValidToken();
-  }, [token])
+  }, [props.load])
 
   return (
     <>
@@ -51,4 +53,10 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    ...state.world
+  };
+}
+
+export default connect(mapStateToProps)(App);

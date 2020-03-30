@@ -1,8 +1,9 @@
 import axios from 'axios'
 import store from '../../config/store'
-import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH, BE_URL, token } from '../../config/constants'
+import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH, BE_URL } from '../../config/constants'
 
 export default function handleMovement(direction) {
+    const token = localStorage.getItem("token")
 
     function getNewPosition(direction) {
         const oldPos = store.getState().player.position

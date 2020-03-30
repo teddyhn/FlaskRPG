@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import store from '../../config/store'
 
 function Splash() {
     const [onboard, setOnboard] = useState('')
@@ -39,6 +40,7 @@ function Splash() {
               )
               .then(res => {
                 localStorage.setItem("token", res.data.key);
+                store.dispatch({ type: 'LOAD_WORLD' })
               })
               .catch(err => {
                   setError(true)
@@ -56,6 +58,7 @@ function Splash() {
               )
               .then(res => {
                 localStorage.setItem("token", res.data.key);
+                store.dispatch({ type: 'LOAD_WORLD' })
               })
               .catch(err => {
                 setError(true)

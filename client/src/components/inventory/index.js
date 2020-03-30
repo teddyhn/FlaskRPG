@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { BE_URL, token } from '../../config/constants'
+import { BE_URL } from '../../config/constants'
 import store from '../../config/store'
 
 function Inventory(props) {
+    const token = localStorage.getItem("token")
 
     const reduceItemDuplicates = (items) => {
         var counts = {};

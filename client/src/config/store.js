@@ -5,6 +5,7 @@ import dialogueReducer from '../components/dialogue/reducer'
 import itemsReducer from '../components/items/reducer'
 import inventoryReducer from '../components/inventory/reducer'
 import shopReducer from '../components/shop/reducer'
+import worldReducer from '../components/world/reducer'
 
 const rootReducer = combineReducers({
     player: playerReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     dialogue: dialogueReducer,
     items: itemsReducer,
     inventory: inventoryReducer,
-    shop: shopReducer
+    shop: shopReducer,
+    world: worldReducer
 })
 
 const store = createStore(

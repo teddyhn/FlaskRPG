@@ -14,7 +14,7 @@ import Shop from '../shop'
 import store from '../../config/store'
 
 import "../../config/tiles.css";
-import { BE_URL, token } from "../../config/constants";
+import { BE_URL } from "../../config/constants";
 import {
   b,
   bl,
@@ -35,22 +35,30 @@ import {
 
 function World(props) {
   const [currentRoom, setCurrentRoom] = useState([]);
+  const [retry, setRetry] = useState(false)
 
-    const fetchCurrentRoom = async () => {
-        return await axios.get(BE_URL + 'api/adv/init/', {
-            headers: {
-                Authorization: 'Token ' + token
+  const token = localStorage.getItem("token")
+
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Token ${token}`
+  };
+
+  const fetchCurrentRoom = () => {
+    axios.get(BE_URL + 'api/adv/init/', {
+        headers: headers
+    }).then(res => {
+        setCurrentRoom(res.data.exits)
+        store.dispatch({
+            type: 'SET_ITEMS',
+            payload: {
+                items: res.data.items
             }
-        }).then(res => {
-            setCurrentRoom(res.data.exits)
-            store.dispatch({
-                type: 'SET_ITEMS',
-                payload: {
-                    items: res.data.items
-                }
-            })
         })
-    }
+    }).catch(err => {
+        console.log(err.response)
+    })
+  }
 
   const determineRoomRender = exits => {
     const sortedExits = exits
@@ -203,7 +211,7 @@ function World(props) {
 
   useEffect(() => {
     fetchCurrentRoom();
-  }, [props.currentRoom]);
+  }, [props.currentRoom, retry]);
 
   return (
         <>
