@@ -10,6 +10,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(41, 38, 52);
   color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 code {
@@ -26,4 +32,31 @@ code {
 .hide-scroll::-webkit-scrollbar { /* WebKit */
   width: 0;
   height: 0;
+}
+
+.highlight:hover {
+  color: yellow;
+  cursor: pointer
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+input {
+  padding: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-family: 'eightBitFont';
+}
+
+.error {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.error.hide {
+  opacity: 0;
+  pointer-events: none;
 }

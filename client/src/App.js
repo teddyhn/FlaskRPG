@@ -1,4 +1,5 @@
 import React from 'react'
+import Splash from './components/splash'
 import World from './components/world'
 
 import './index.css'
@@ -15,7 +16,8 @@ function App() {
         backgroundColor: 'rgb(41, 38, 52)'
       }}
     >
-      <World />
+      <Splash />
+      {/* <World /> */}
     </div>
   );
 }
