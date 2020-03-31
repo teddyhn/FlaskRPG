@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Splash from './components/splash'
 import World from './components/world'
 import axios from 'axios'
-import store from './config/store'
 
 import './index.css'
 import { BE_URL } from './config/constants'
