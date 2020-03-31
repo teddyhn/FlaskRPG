@@ -16,6 +16,10 @@ function DialogueBox(props) {
         if (context === 'tree') {
             return renderDialogue(`The ${context} radiates a calming aura.`)
         }
+
+        if (context === 'treasure') {
+            return renderDialogue(`You discovered some ${context}.`)
+        }
     }
 
     const renderDialogue = (text, name) => {
