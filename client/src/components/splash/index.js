@@ -127,7 +127,7 @@ function Splash() {
                                     marginTop: '0.25rem'
                                 }}
                             >
-                                <div
+                                <button
                                     className='highlight'
                                     style={{
                                         cursor: 'pointer',
@@ -139,7 +139,7 @@ function Splash() {
                                     onClick={handleSubmit}
                                 >
                                     START
-                                </div>
+                                </button>
                             </div>
                             <div
                                 style={{
@@ -214,7 +214,7 @@ function Splash() {
                                     marginTop: '0.25rem'
                                 }}
                             >
-                                <div
+                                <button
                                     className='highlight'
                                     style={{
                                         cursor: 'pointer',
@@ -226,7 +226,7 @@ function Splash() {
                                     onClick={handleSubmit}
                                 >
                                     START
-                                </div>
+                                </button>
                             </div>
                             <div
                                 style={{
