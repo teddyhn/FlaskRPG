@@ -133,7 +133,7 @@ export default function handleMovement(direction) {
                         }
                     })
 
-                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+                    return await setTimeout(() => store.dispatch({ type: 'ENABLE_MOVEMENT' }), 500)
 
                 case ("WEST"):
                     await axios({
@@ -167,7 +167,7 @@ export default function handleMovement(direction) {
                         }
                     })
 
-                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+                    return await setTimeout(() => store.dispatch({ type: 'ENABLE_MOVEMENT' }), 500)
 
                 case ("SOUTH"):
                     await axios({
@@ -201,7 +201,7 @@ export default function handleMovement(direction) {
                         }
                     })
 
-                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+                    return await setTimeout(() => store.dispatch({ type: 'ENABLE_MOVEMENT' }), 500)
 
                 case ("NORTH"):
                     await axios({
@@ -235,7 +235,7 @@ export default function handleMovement(direction) {
                         }
                     })
 
-                    return await store.dispatch({ type: 'ENABLE_MOVEMENT' })
+                    return await setTimeout(() => store.dispatch({ type: 'ENABLE_MOVEMENT' }), 500)
 
                 default:
                     return
