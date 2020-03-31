@@ -1,7 +1,10 @@
+import axios from 'axios'
+import { BE_URL } from '../../config/constants'
 import store from '../../config/store'
 import { SPRITE_SIZE } from '../../config/constants'
 
 export default function handleInteraction(direction) {
+    const token = localStorage.getItem("token")
 
     function getNewPosition(oldPos, direction) {
         switch(direction) {
@@ -42,6 +45,19 @@ export default function handleInteraction(direction) {
                 store.dispatch({
                     type: 'SHOW_ITEMS',
                     payload: true
+                })
+
+                axios.get(BE_URL + 'api/adv/init/', {
+                    headers: {
+                        Authorization: 'Token ' + token
+                    }
+                }).then(res => {
+                    store.dispatch({
+                        type: 'SET_ITEMS',
+                        payload: {
+                            items: res.data.items
+                        }
+                    })
                 })
             }
 
