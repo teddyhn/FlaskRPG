@@ -38,6 +38,10 @@ function Inventory(props) {
                     inventory: res.data.Inventory
                 }
             })
+            store.dispatch({
+                type: 'SET_MONEY',
+                payload: res.data.Money
+            })
         })
     }
 
@@ -123,6 +127,14 @@ function Inventory(props) {
                             padding: '0.5rem'
                         }}
                     >
+                        <div
+                            style={{
+                                width: 'fit-content',
+                                marginLeft: 'auto'
+                            }}
+                        >
+                            {props.money + 'G'}
+                        </div>
                         <div
                             style={{
                                 margin: '0 auto 0.75rem auto',
