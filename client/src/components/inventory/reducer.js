@@ -1,6 +1,7 @@
 const initialState = {
     inventory: [],
-    show: false
+    show: false,
+    money: 0
 }
 
 const inventoryReducer = (state=initialState, action) => {
@@ -14,6 +15,11 @@ const inventoryReducer = (state=initialState, action) => {
             return {
                 ...state,
                 show: action.payload
+            }
+        case 'SET_MONEY':
+            return {
+                ...state,
+                money: action.payload
             }
         default:
             return state

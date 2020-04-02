@@ -32,6 +32,19 @@ function Shop(props) {
         return final;
     }
 
+    const fetchUpdatedMoney = async () => {
+        return await axios.get(BE_URL + 'api/adv/inventory/', {
+            headers: {
+                Authorization: 'Token ' + token
+            }
+        }).then(res => {
+            store.dispatch({
+                type: 'SET_MONEY',
+                payload: res.data.Money
+            })
+        })
+    }
+
     const handleMenuClick = async (action) => {
         switch (action) {
             case 'BUY':
@@ -89,6 +102,7 @@ function Shop(props) {
                     Authorization: 'Token ' + token
                 }
             }).then(res => {
+                fetchUpdatedMoney();
                 store.dispatch({
                     type: 'SET_SHOP_STOCK',
                     payload: {
@@ -115,6 +129,7 @@ function Shop(props) {
                 Authorization: 'Token ' + token
             }
         }).then(res => {
+            fetchUpdatedMoney();
             store.dispatch({
                 type: 'SET_INVENTORY',
                 payload: {
@@ -317,6 +332,14 @@ function Shop(props) {
                                 onClick={() => handleMenuClick('EXIT')}
                             >
                                 Exit
+                            </div>
+                            <div
+                                style={{
+                                    width: 'fit-content',
+                                    marginLeft: 'auto'
+                                }}
+                            >
+                                {store.getState().inventory.money + 'G'}
                             </div>
                      </div>
                     </div>
