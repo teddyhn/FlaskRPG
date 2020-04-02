@@ -2,7 +2,8 @@ const initialState = {
     facing: 'DOWN',
     position: [160, 128],
     hidden: false,
-    disableMovement: false
+    disableMovement: false,
+    currentRoomId: null
 }
 
 const playerReducer = (state=initialState, action) => {
@@ -31,6 +32,11 @@ const playerReducer = (state=initialState, action) => {
             return {
                 ...state,
                 disableMovement: false
+            }
+        case 'SET_CURRENT_ROOM_ID':
+            return {
+                ...state,
+                currentRoomId: action.payload
             }
         default:
             return state

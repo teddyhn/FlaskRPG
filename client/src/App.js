@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Splash from './components/splash'
 import World from './components/world'
 import axios from 'axios'
+import Typist from 'react-typist'
 
 import './index.css'
 import { BE_URL } from './config/constants'
@@ -10,6 +11,7 @@ import { BE_URL } from './config/constants'
 function App(props) {
   const [validToken, setValidToken] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [count, setCount] = useState(1)
 
   const token = localStorage.getItem("token")
 
@@ -30,11 +32,41 @@ function App(props) {
 
   useEffect(() => {
     checkValidToken();
-  }, [props.load])
+    setCount(1)
+  }, [props.load, count])
 
   return (
     <>
-      {isLoading ? null :
+      {isLoading ? 
+        <div 
+          style={{
+            display: 'flex',
+            height: '100vh',
+            width: '100vw',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgb(41, 38, 52)'
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              width: '20%'
+            }}
+          >
+            Starting serve
+            {count ?
+            <Typist
+              avgTypingDelay={400}
+              stdTypingDelay={0}
+              cursor={{ show: false }}
+              onTypingDone={() => setCount(0)}
+            >
+              r....
+            </Typist> : null}
+          </div>
+        </div>
+        :
         <div
           style={{
             display: 'flex',
