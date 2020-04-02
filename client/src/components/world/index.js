@@ -11,6 +11,7 @@ import MapObscure from '../map/obscure'
 import MapOverlay from '../map/overlay'
 import Player from '../player'
 import Shop from '../shop'
+import WorldMap from '../worldmap'
 import store from '../../config/store'
 
 import "../../config/tiles.css";
@@ -35,7 +36,6 @@ import {
 
 function World(props) {
   const [currentRoom, setCurrentRoom] = useState([]);
-  const [retry, setRetry] = useState(false)
 
   const token = localStorage.getItem("token")
 
@@ -54,6 +54,10 @@ function World(props) {
             payload: {
                 items: res.data.items
             }
+        })
+        store.dispatch({
+            type: 'SET_CURRENT_ROOM_ID',
+            payload: res.data.id
         })
     })
   }
@@ -209,7 +213,7 @@ function World(props) {
 
   useEffect(() => {
     fetchCurrentRoom();
-  }, [props.currentRoom, retry]);
+  }, [props.currentRoom]);
 
   return (
         <>
@@ -232,6 +236,7 @@ function World(props) {
                 {currentRoom.length ? renderRoom(determineRoomRender(currentRoom)) : null}
             </div>
             <InventoryButton />
+            <WorldMap />
           </div>
         </>
   );

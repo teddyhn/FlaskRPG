@@ -309,3 +309,63 @@
 .treasure-2-obs {
     background: url('../assets/map/treasure_chests.png') -16px -32px;
 }
+
+.grid-e {
+    background: url('../assets/grid/e.png');
+}
+
+.grid-en {
+    background: url('../assets/grid/en.png');
+}
+
+.grid-ens {
+    background: url('../assets/grid/ens.png');
+}
+
+.grid-ensw {
+    background: url('../assets/grid/ensw.png');
+}
+
+.grid-enw {
+    background: url('../assets/grid/enw.png');
+}
+
+.grid-es {
+    background: url('../assets/grid/es.png');
+}
+
+.grid-esw {
+    background: url('../assets/grid/esw.png');
+}
+
+.grid-ew {
+    background: url('../assets/grid/ew.png');
+}
+
+.grid-n {
+    background: url('../assets/grid/n.png');
+}
+
+.grid-ns {
+    background: url('../assets/grid/ns.png');
+}
+
+.grid-nsw {
+    background: url('../assets/grid/nsw.png');
+}
+
+.grid-nw {
+    background: url('../assets/grid/nw.png');
+}
+
+.grid-s {
+    background: url('../assets/grid/s.png');
+}
+
+.grid-sw {
+    background: url('../assets/grid/sw.png');
+}
+
+.grid-w {
+    background: url('../assets/grid/w.png');
+}
