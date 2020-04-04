@@ -8,6 +8,10 @@ function Items(props) {
     const token = localStorage.getItem("token")
 
     const handleItemClick = async (itemName) => {
+        if (props.isDialogueShow) {
+            return
+        }
+
         await axios({
             method: 'post',
             url: BE_URL + 'api/adv/take/',
@@ -17,6 +21,14 @@ function Items(props) {
             data: {
                 item_name: itemName
             }
+        }).catch(err => {
+            store.dispatch({
+                type: 'SET_CONTEXT',
+                payload: {
+                    show: true,
+                    context: 'duplicateItem'
+                }
+            })
         })
 
         return await axios.get(BE_URL + 'api/adv/init/', {
@@ -34,6 +46,10 @@ function Items(props) {
     }
 
     const handleExitClick = () => {
+        if (props.isDialogueShow) {
+            return
+        }
+
         store.dispatch({
             type: 'SHOW_ITEMS',
             payload: false
@@ -87,19 +103,32 @@ function Items(props) {
                         {items ? (
                             items.map(item => {
                                 return (
-                                <div 
-                                    style={{ 
-                                        cursor: 'pointer',
-                                        margin: '0.5rem auto', 
-                                        width: 'fit-content' 
-                                    }}
-                                    onClick={() => handleItemClick(item)}
-                                >
-                                    {item}
-                                </div>
+                                <>
+                                    {!props.isDialogueShow ?
+                                    <div 
+                                        style={{ 
+                                            cursor: 'pointer',
+                                            margin: '0.5rem auto', 
+                                            width: 'fit-content' 
+                                        }}
+                                        onClick={() => handleItemClick(item)}
+                                    >
+                                        {item}
+                                    </div> :
+                                    <div 
+                                        style={{
+                                            margin: '0.5rem auto', 
+                                            width: 'fit-content' 
+                                        }}
+                                        onClick={() => handleItemClick(item)}
+                                    >
+                                        {item}
+                                    </div>}
+                                </>
                                 )
                             })
                         ) : null}
+                        {!props.isDialogueShow ?
                         <div 
                             style={{
                                 cursor: 'pointer',
@@ -111,7 +140,18 @@ function Items(props) {
                             onClick={() => handleExitClick()}
                         >
                             Exit
-                        </div>
+                        </div> :
+                        <div 
+                            style={{
+                                border: '1px solid white',
+                                margin: '0.75rem auto 0 auto',
+                                padding: '0.1rem 0.25rem',
+                                width: 'fit-content'
+                            }}
+                            onClick={() => handleExitClick()}
+                        >
+                            Exit
+                        </div>}
                     </div>
                 </div>
             )
@@ -128,7 +168,8 @@ function Items(props) {
 
 function mapStateToProps(state) {
     return {
-        ...state.items
+        ...state.items,
+        isDialogueShow: state.dialogue.show
     }
 }
 

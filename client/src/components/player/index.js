@@ -31,14 +31,16 @@ function Player(props) {
     }
 
     useEventListener('keydown', ({ code }) => {
-        // If player movement is disabled, escape from function
-        const disabled = props.disableMovement
-        if (disabled) {
-            return
-        }
 
         if (code === 'Enter') {
             handleInteraction(props.facing)
+        }
+
+        // If player movement is disabled, escape from function
+        const disabled = props.disableMovement
+
+        if (disabled) {
+            return
         }
 
         if (code.indexOf('Arrow') === -1) return
