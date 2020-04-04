@@ -32,8 +32,26 @@ function Player(props) {
 
     useEventListener('keydown', ({ code }) => {
 
-        if (code === 'Enter') {
+        if (code === 'Enter' || code === 'Space') {
             handleInteraction(props.facing)
+        }
+
+        if (code === 'KeyI') {
+            if (store.getState().inventory.show) {
+                store.dispatch({
+                    type: 'SHOW_INVENTORY',
+                    payload: false
+                })
+
+                return store.dispatch({
+                    type: 'ENABLE_MOVEMENT'
+                })
+            }
+
+            store.dispatch({
+                type: 'SHOW_INVENTORY',
+                payload: true
+            })
         }
 
         // If player movement is disabled, escape from function
@@ -41,6 +59,25 @@ function Player(props) {
 
         if (disabled) {
             return
+        }
+
+        // Converts WASD to Arrow key codes
+
+        switch(code) {
+            case 'KeyW':
+                code = 'ArrowUp';
+                break;
+            case 'KeyA':
+                code = 'ArrowLeft';
+                break;
+            case 'KeyS':
+                code = 'ArrowDown';
+                break;
+            case 'KeyD':
+                code = 'ArrowRight';
+                break;
+            default:
+                break
         }
 
         if (code.indexOf('Arrow') === -1) return
