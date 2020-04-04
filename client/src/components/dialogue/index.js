@@ -20,6 +20,10 @@ function DialogueBox(props) {
         if (context === 'treasure') {
             return renderDialogue(`You discovered some ${context}.`)
         }
+
+        if (context === 'duplicateItem') {
+            return renderDialogue(`Don't be greedy! (You cannot hold more than one of each item.)`)
+        }
     }
 
     const renderDialogue = (text, name) => {

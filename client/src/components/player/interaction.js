@@ -34,7 +34,13 @@ export default function handleInteraction(direction) {
         const shopOpen = store.getState().shop.show
 
         if (itemsOpen || shopOpen) {
-            return
+            return store.dispatch({
+                type: 'SET_CONTEXT',
+                payload: {
+                    show: false,
+                    context: ''
+                }
+            })
         }
 
         if (isShow) {

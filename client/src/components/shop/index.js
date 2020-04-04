@@ -46,6 +46,10 @@ function Shop(props) {
     }
 
     const handleMenuClick = async (action) => {
+        if (props.isDialogueShow) {
+            return
+        }
+
         switch (action) {
             case 'BUY':
                 await axios.get(BE_URL + 'api/adv/store', {
@@ -86,6 +90,10 @@ function Shop(props) {
     }
 
     const handleBuyClick = async (itemName) => {
+        if (props.isDialogueShow) {
+            return
+        }
+
         await axios({
             method: 'post',
             url: BE_URL + 'api/adv/buy/',
@@ -95,6 +103,14 @@ function Shop(props) {
             data: {
                 item_name: itemName
             }
+        }).catch(err => {
+            store.dispatch({
+                type: 'SET_CONTEXT',
+                payload: {
+                    show: true,
+                    context: 'duplicateItem'
+                }
+            })
         })
 
         return await axios.get(BE_URL + 'api/adv/store', {
@@ -113,6 +129,10 @@ function Shop(props) {
     }
 
     const handleSellClick = async (itemName) => {
+        if (props.isDialogueShow) {
+            return
+        }
+
         await axios({
             method: 'post',
             url: BE_URL + 'api/adv/sell/',
@@ -155,12 +175,15 @@ function Shop(props) {
     }
 
     const renderShopMenu = (action) => {
+        let cursor;
+        props.isDialogueShow ? cursor = '' : cursor = 'pointer'
+        
         switch (action) {
             case 'BUY':
                 return props.shop.stock.map(item => {
                     return (
                         <div 
-                            style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                            style={{ margin: '0.5rem 0', cursor: cursor }}
                             onClick={() => handleBuyClick(item.name)}
                         >
                             {`${item.price}G - ` + `${item.name}`}
@@ -179,7 +202,7 @@ function Shop(props) {
                 return noDuplicates.map(item => {
                     return (
                         <div 
-                            style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                            style={{ margin: '0.5rem 0', cursor: cursor }}
                             onClick={() => handleSellClick(item.name)}
                         >
                             {item.count ? `${item.price}G - ` + `${item.name}` + ' x' + `${item.count}` : `${item.price}G - ` + `${item.name}`}
@@ -211,6 +234,13 @@ function Shop(props) {
     }
 
     const renderShopView = () => {
+        let cursor;
+        let overflowY;
+
+        props.isDialogueShow ? cursor = '' : cursor = 'pointer'
+        props.isDialogueShow ? overflowY = 'hidden' : overflowY = ''
+
+
         if (props.shop.show) {
             return (
                 <div
@@ -220,7 +250,7 @@ function Shop(props) {
                         position: 'absolute',
                         width: '320px',
                         height: '240px',
-                        zIndex: 1002
+                        zIndex: 1000
                     }}
                 >
                     <div
@@ -297,7 +327,8 @@ function Shop(props) {
                             style={{
                                 border: '2px solid white',
                                 padding: '0 0.5rem',
-                                width: '70%'
+                                width: '70%',
+                                overflowY: overflowY
                             }}
                         >
                             {renderShopMenu(props.shop.shopTab)}
@@ -310,25 +341,25 @@ function Shop(props) {
                             }}
                         >
                             <div 
-                                style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                                style={{ margin: '0.5rem 0', cursor: cursor }}
                                 onClick={() => handleMenuClick('BUY')}
                             >
                                 Buy
                             </div>
                             <div
-                                style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                                style={{ margin: '0.5rem 0', cursor: cursor }}
                                 onClick={() => handleMenuClick('SELL')}
                             >
                                 Sell
                             </div>
                             <div
-                                style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                                style={{ margin: '0.5rem 0', cursor: cursor }}
                                 onClick={() => handleMenuClick('TALK')}
                             >
                                 Talk
                             </div>
                             <div
-                                style={{ margin: '0.5rem 0', cursor: 'pointer' }}
+                                style={{ margin: '0.5rem 0', cursor: cursor }}
                                 onClick={() => handleMenuClick('EXIT')}
                             >
                                 Exit
@@ -366,7 +397,8 @@ function Shop(props) {
 function mapStateToProps(state) {
     return {
         shop: state.shop,
-        inventory: state.inventory
+        inventory: state.inventory,
+        isDialogueShow: state.dialogue.show
     }
 }
 
