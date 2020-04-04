@@ -51,7 +51,7 @@ function App(props) {
           <div
             style={{
               display: 'flex',
-              width: '20%'
+              width: '195px'
             }}
           >
             Starting serve
