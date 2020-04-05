@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import DialogueBox from '../dialogue'
+import Instructions from '../instructions'
 import Inventory from '../inventory'
 import Items from '../items'
 import Loading from '../loading'
@@ -198,6 +199,7 @@ function World(props) {
         return (
             <>
                 <DialogueBox />
+                <Instructions />
                 <Inventory />
                 <Items />
                 <Loading />
