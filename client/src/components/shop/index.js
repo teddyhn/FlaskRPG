@@ -104,7 +104,16 @@ function Shop(props) {
                 item_name: itemName
             }
         }).catch(err => {
-            store.dispatch({
+            if (err.response.data === 'You do not have enough gold coins to buy that item.') {
+                store.dispatch({
+                    type: 'SET_CONTEXT',
+                    payload: {
+                        show: true,
+                        context: 'notEnoughMoney'
+                    }
+                })
+            } 
+            else store.dispatch({
                 type: 'SET_CONTEXT',
                 payload: {
                     show: true,
