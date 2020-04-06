@@ -56,7 +56,9 @@ function WorldMap() {
                                 className={`grid-${exits}`}
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '16px', width: '16px', fontSize: '0.75rem', color: 'red' }}
                             >
-                                {tile !== null && tile.id === store.getState().player.currentRoomId ? <div style={{ height: '4px', width: '4px', backgroundColor: 'red', borderRadius: '5px' }}></div> : null}
+                                {tile !== null && tile.id === store.getState().player.currentRoomId ? <div style={{ height: '5px', width: '5px', backgroundColor: 'blue', borderRadius: '5px' }} /> 
+                                : null}
+                                {tile !== null && tile.id !== store.getState().player.currentRoomId ? <div style={{ height: '5px', width: '5px', backgroundColor: 'white', borderRadius: '5px' }} /> : null}
                             </div>)
                     })}
                 </div>

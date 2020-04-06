@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import store from '../../config/store'
+import { BE_URL } from '../../config/constants'
 
 function Splash() {
     const [onboard, setOnboard] = useState('')
@@ -34,7 +35,7 @@ function Splash() {
         if (onboard === 'register') {
             axios
               .post(
-                "https://team-big-bosses-be.herokuapp.com/api/registration/",
+                BE_URL + "api/registration/",
                 register,
                 headers
               )
@@ -52,7 +53,7 @@ function Splash() {
         if (onboard === 'login') {
             axios
               .post(
-                "https://team-big-bosses-be.herokuapp.com/api/login/",
+                BE_URL + "api/login/",
                 login,
                 headers
               )
