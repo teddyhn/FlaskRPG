@@ -6,4 +6,4 @@ A front end client built for a Flask API server demonstrating a room generation 
 
 ## About
 
-This application was written in React with Redux for state management. The Canvas API was used to animate the player sprite walking. All game art/creative assets were taken from opengameart.org with gratitude.
+This application was written in React with Redux for state management. The Canvas API was used to animate the player sprite walking. All game art/creative assets were taken from [opengameart.org](https://opengameart.org/) with gratitude.
