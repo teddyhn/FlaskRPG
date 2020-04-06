@@ -2,7 +2,7 @@
 
 A front end client built for a Flask API server demonstrating a room generation algorithm in a game appropriately named... FlaskRPG. Source code for the Flask API can be found [here](https://github.com/Team-Big-Bosses/CS-Build-Week-1-Flask).
 
-![Screenshot](client\src\assets\screenshot.png)
+![Screenshot](./client/src/assets/screenshot.png)
 
 ## About
 
