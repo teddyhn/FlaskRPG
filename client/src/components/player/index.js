@@ -30,6 +30,18 @@ function Player(props) {
         animate('draw')
     }
 
+    useEventListener('click', () => {
+        if (store.getState().dialogue.show) {
+            return store.dispatch({
+                type: 'SET_CONTEXT',
+                payload: {
+                    show: false,
+                    context: ''
+                }
+            })
+        }
+    })
+
     useEventListener('keydown', ({ code }) => {
 
         if (code === 'Enter' || code === 'Space') {
