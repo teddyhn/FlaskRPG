@@ -8,22 +8,22 @@ function Inventory(props) {
     const token = localStorage.getItem("token")
 
     const reduceItemDuplicates = (items) => {
-        var counts = {};
-        var final = [];
+        let counts = {};
+        let reduced = [];
 
-        for (var i = 0; i < items.length; i++) {
-            if(counts[items[i]] != undefined) {
+        for (let i = 0; i < items.length; i++) {
+            if (!counts[items[i]]) {
                 counts[items[i]] = 1;
             } else {
                 counts[items[i]]++;
             }
         }
 
-        for (const name in counts) {
-            final.push({ 'name': name, 'count': counts[name] + 1 });
+        for (let name in counts) {
+            reduced.push({ 'name': name, 'count': counts[name] });
         }
 
-        return final
+        return reduced;
     }
 
     const fetchInventory = async () => {
@@ -153,7 +153,7 @@ function Inventory(props) {
                                     }}
                                     onClick={() => handleItemClick(item.name)}
                                 >
-                                    {item.count ? `${item.name}` + ' x' + `${item.count}` : item.name}
+                                    {item.count > 1 ? `${item.name} (${item.count})` : item.name}
                                 </div>
                             )
                         })}

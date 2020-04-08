@@ -104,20 +104,11 @@ function Shop(props) {
                 item_name: itemName
             }
         }).catch(err => {
-            if (err.response.data === 'You do not have enough gold coins to buy that item.') {
-                store.dispatch({
-                    type: 'SET_CONTEXT',
-                    payload: {
-                        show: true,
-                        context: 'notEnoughMoney'
-                    }
-                })
-            } 
-            else store.dispatch({
+            store.dispatch({
                 type: 'SET_CONTEXT',
                 payload: {
                     show: true,
-                    context: 'duplicateItem'
+                    context: 'notEnoughMoney'
                 }
             })
         })
@@ -214,7 +205,7 @@ function Shop(props) {
                             style={{ margin: '0.5rem 0', cursor: cursor }}
                             onClick={() => handleSellClick(item.name)}
                         >
-                            {item.count ? `${item.price}G - ` + `${item.name}` + ' x' + `${item.count}` : `${item.price}G - ` + `${item.name}`}
+                            {item.count > 1 ? `${item.price}G - ` + `${item.name} (${item.count})` : `${item.price}G - ` + `${item.name}`}
                         </div>
                     )
                 })

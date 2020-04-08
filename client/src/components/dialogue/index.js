@@ -21,10 +21,6 @@ function DialogueBox(props) {
             return renderDialogue(`You discovered some ${context}.`)
         }
 
-        if (context === 'duplicateItem') {
-            return renderDialogue(`Don't be greedy! (You cannot hold more than one of each item.)`)
-        }
-
         if (context === 'notEnoughMoney') {
             return renderDialogue(`You don't have enough money to buy that item.`)
         }
