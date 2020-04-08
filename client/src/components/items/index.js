@@ -21,14 +21,6 @@ function Items(props) {
             data: {
                 item_name: itemName
             }
-        }).catch(err => {
-            store.dispatch({
-                type: 'SET_CONTEXT',
-                payload: {
-                    show: true,
-                    context: 'duplicateItem'
-                }
-            })
         })
 
         return await axios.get(BE_URL + 'api/adv/init/', {
