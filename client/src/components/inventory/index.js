@@ -20,7 +20,7 @@ function Inventory(props) {
         }
 
         for (let name in counts) {
-            reduced.push({ 'name': name, 'count': counts[name] });
+            reduced.push({ name: name, count: counts[name] });
         }
 
         return reduced;
@@ -98,7 +98,17 @@ function Inventory(props) {
             names.push(item.name)
         })
 
-        const noDuplicates = reduceItemDuplicates(names)
+        const noDuplicates = reduceItemDuplicates(names).sort((a, b) => {
+            if (a.name < b.name) {
+                return -1;
+            }
+
+            if (a.name > b.name) {
+                return 1;
+            }
+
+            return 0;
+        })
 
         if (props.show) {
 

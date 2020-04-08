@@ -11,25 +11,25 @@ function Shop(props) {
     const reduceItemDuplicates = (items) => {
         var prices = {};
         var counts = {};
-        var final = [];
+        var reduced = [];
 
-        for (var i = 0; i < items.length; i++) {
-            if(counts[items[i].name] != undefined) {
+        for (let i = 0; i < items.length; i++) {
+            if (!counts[items[i].name]) {
                 counts[items[i].name] = 1;
             } else {
                 counts[items[i].name]++;
             }
         }
 
-        for (var i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
             prices[items[i].name] = items[i].price 
         }
 
-        for (const name in counts) {
-            final.push({ name: name, count: counts[name] + 1, price: prices[name] });
+        for (let name in counts) {
+            reduced.push({ name: name, count: counts[name], price: prices[name] });
         }
 
-        return final;
+        return reduced;
     }
 
     const fetchUpdatedMoney = async () => {
@@ -197,7 +197,17 @@ function Shop(props) {
                     namePrice.push({ name: item.name, price: item.price })
                 })
 
-                const noDuplicates = reduceItemDuplicates(namePrice)
+                const noDuplicates = reduceItemDuplicates(namePrice).sort((a, b) => {
+                    if (a.name < b.name) {
+                        return -1;
+                    }
+
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+
+                    return 0;
+                })
 
                 return noDuplicates.map(item => {
                     return (
