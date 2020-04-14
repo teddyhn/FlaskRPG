@@ -149,7 +149,7 @@ function Player(props) {
 
             let currentFrame = 0
             let currentTick = 0
-            const ticksPerFrame = 25
+            const ticksPerFrame = 15
 
             const update = () => {
                 currentTick++
