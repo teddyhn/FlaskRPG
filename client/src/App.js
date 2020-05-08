@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import Splash from './components/splash'
 import World from './components/world'
 import axios from 'axios'
 import Typist from 'react-typist'
@@ -9,29 +8,20 @@ import './index.css'
 import { BE_URL } from './config/constants'
 
 function App(props) {
-  const [validToken, setValidToken] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [count, setCount] = useState(1)
 
-  const token = localStorage.getItem("token")
-
-  const checkValidToken = () => {
-    axios.get(BE_URL + 'api/adv/init/', {
-      headers: {
-          Authorization: 'Token ' + token
-      }
-    }).then(res => {
-      setValidToken(true)
+  const instantiatePlayer = () => {
+    axios.post(BE_URL + 'api/instantiate/')
+    .then(res => {
       setIsLoading(false)
     }).catch(err => {
-      setValidToken(false)
-      localStorage.removeItem("token")
       setIsLoading(false)
     })
   }
 
   useEffect(() => {
-    checkValidToken();
+    instantiatePlayer();
     setCount(1)
   }, [props.load, count])
 
@@ -77,7 +67,7 @@ function App(props) {
             backgroundColor: 'rgb(41, 38, 52)'
           }}
         >
-          {validToken ? <World /> : <Splash />}
+          <World />
         </div>
       }
     </>
