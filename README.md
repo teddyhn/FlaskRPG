@@ -1,6 +1,6 @@
 # FlaskRPG
 
-A front end client built for a Flask API server demonstrating a room generation algorithm in a game appropriately named... FlaskRPG. Source code for the Flask API can be found [here](https://github.com/Team-Big-Bosses/CS-Build-Week-1-Flask).
+A 2D game built in React and Python (Flask) demonstrating an algorithm that generates 4-way connected rooms. Source code for the Flask API can be found [here](https://github.com/Team-Big-Bosses/CS-Build-Week-1-Flask).
 
 ![Screenshot](./client/src/assets/screenshot.png)
 
